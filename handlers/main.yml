@@ -1,0 +1,9 @@
+---
+# handlers file for cesnet.reverseproxy
+
+- name: "REVERSEPROXY - Restart"
+  community.docker.docker_compose:
+    project_src: "{{ reverseproxy_path }}"
+    state: present
+    restarted: yes
+  listen: "docker reverseproxy restart"

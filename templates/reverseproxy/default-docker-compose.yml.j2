@@ -1,0 +1,26 @@
+{{ ansible_managed | comment}}
+
+version: '3'
+services:
+  reverseproxy:
+    image: {{ reverseproxy_docker_image }}
+    container_name: reverseproxy
+    restart: always
+    volumes:
+      - /opt/reverseproxy/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /opt/reverseproxy/etc/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - /opt/reverseproxy/etc/nginx/ssl:/etc/nginx/ssl/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - {{ reverseproxy_docker_network }}
+    logging:
+      driver: "syslog"
+      options:
+        tag: "reverseproxy"
+        
+networks:
+  {{ reverseproxy_docker_network }}:
+    external:
+      name: {{ reverseproxy_docker_network }}

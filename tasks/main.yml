@@ -1,0 +1,5 @@
+---
+# tasks file for cesnet.reverseproxy
+- import_tasks: reverseproxy.yml
+  tags:
+    - reverseproxy

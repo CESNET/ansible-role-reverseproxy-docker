@@ -1,0 +1,38 @@
+---
+# defaults file for cesnet.reverseproxy
+
+reverseproxy_path: "/opt/reverseproxy"
+
+# Specify the docker image to use
+reverseproxy_docker_image: "nginx:latest"
+
+# Specify the external network that will be used
+reverseproxy_docker_network: "network"
+
+# Default docker-compose template which will be used
+reverseproxy_docker_compose_template: "default-docker-compose.yml"
+
+# Default owner: root
+# Default group: root
+# Default mode: 0755
+reverseproxy_dirs:
+  - { path: "{{ reverseproxy_path }}" }
+  - { path: "{{ reverseproxy_path }}/etc" }
+  - { path: "{{ reverseproxy_path }}/etc/nginx" }
+  - { path: "{{ reverseproxy_path }}/etc/nginx/ssl" }
+
+
+# src - required
+# dest - relative to {{ reverseproxy_path }} - default value {{ src }}
+# Default owner: root
+# Default group: root
+# Default mode: 0644
+reverseproxy_files: 
+  - { src: "etc/nginx/nginx.conf", dest: "/etc/nginx/nginx.conf"}
+
+# src - required
+# dest - relative to {{ reverseproxy_path }} - default value {{ src }}
+# Default owner: root
+# Default group: root
+# Default mode: 0644
+reverseproxy_templates: []
