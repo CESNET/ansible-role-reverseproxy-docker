@@ -1,6 +1,5 @@
 {{ ansible_managed | comment}}
 
-version: '3'
 services:
   reverseproxy:
     image: {{ reverseproxy_docker_image }}
@@ -22,5 +21,5 @@ services:
         
 networks:
   {{ reverseproxy_docker_network }}:
-    external:
-      name: {{ reverseproxy_docker_network }}
+    name: {{ reverseproxy_docker_network }}
+    external: true
