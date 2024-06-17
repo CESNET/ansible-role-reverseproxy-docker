@@ -49,6 +49,7 @@
   community.docker.docker_compose_v2:
     project_src: "{{ reverseproxy_path }}"
     state: present
+    pull: always
 
 - name: "REVERSEPROXY - site-specific tasks"
   when: reverseproxy_site_specific_tasks is defined
